@@ -1,0 +1,32 @@
+<div class="search">
+  <input type="text" placeholder="Search...">
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Company name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.company.name }}</td>
+      <td>
+        <button class="del-btn" (click)="delete(user)">Delete</button>
+      </td>
+      <td> <button class="edit-btn">Edit</button> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="create-wrapper">
+  <button class="create-btn">Create</button>
+</div>

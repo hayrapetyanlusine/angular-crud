@@ -1,0 +1,62 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+}
+
+.search {
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 8px 10px;
+  }
+}
+
+table {
+  th {
+    font-size: 18px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  td {
+    padding: 8px 10px;
+  }
+
+  .del-btn {
+    color: red;
+  }
+
+  .edit-btn {
+    color: gray;
+  }
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.create-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  .create-btn {
+    padding: 10px 30px;
+    background-color: gray;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+      background-color: #585858;
+    }
+  }
+}
