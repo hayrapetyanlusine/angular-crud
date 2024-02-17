@@ -22,11 +22,11 @@
       <td>
         <button class="del-btn" (click)="delete(user)">Delete</button>
       </td>
-      <td> <button class="edit-btn">Edit</button> </td>
+      <td> <button type="button" [routerLink]="['/edit', user.id]" class="edit-btn">Edit</button> </td>
     </tr>
   </tbody>
 </table>
 
 <div class="create-wrapper">
-  <button class="create-btn">Create</button>
+  <button type="button" routerLink="/create" class="create-btn">Create</button>
 </div>

@@ -7,6 +7,6 @@ import {EditUserComponent} from "./edit-user/edit-user.component";
 export const routes: Routes = [
   {path: "", component: UsersComponent},
   {path: "create", component: CreateUserComponent},
-  {path: "edit", component: EditUserComponent},
+  {path: "edit/:id", component: EditUserComponent},
   {path: '**', component: PageNotFoundComponent},
 ];

@@ -1,1 +1,15 @@
-<p>create-user works!</p>
+<h1>Create new user</h1>
+
+<form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+  <input id="name" type="text" formControlName="name" placeholder="Name" required>
+  <input id="email" type="email" formControlName="email" placeholder="Email" required>
+
+  <div formGroupName="company">
+    <input id="comp-name" type="text" formControlName="name" placeholder="Company name">
+  </div>
+
+  <div class="btns-wrapper">
+    <button type="submit" [disabled]="!createUserForm.valid">Submit</button>
+    <button type="button" (click)="resetValues()">Reset</button>
+  </div>
+</form>
