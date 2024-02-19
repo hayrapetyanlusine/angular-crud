@@ -34,7 +34,7 @@ export class UsersInfoService {
   updateUser(user: User): Observable<User> {
     httpOptions.headers = httpOptions.headers.set('Authorization', 'my-new-auth-token');
 
-    return this.http.put<User>(this.url, user, httpOptions);
+    return this.http.put<User>(`${this.url}/${user.id}`, user, httpOptions);
   }
 
   deleteUser(id: number): Observable<unknown> {

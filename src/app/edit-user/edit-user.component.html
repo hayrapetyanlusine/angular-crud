@@ -1,1 +1,16 @@
-<p>edit-user works!</p>
+<div *ngIf="isLoading"> Loading data... </div>
+
+<div *ngIf="!isLoading">
+  <h1>Change info</h1>
+
+  <form [formGroup]="editUserForm" (ngSubmit)="onEdit()">
+    <input id="name" type="text" formControlName="name" placeholder="Name" required>
+    <input id="email" type="email" formControlName="email" placeholder="Email" required>
+
+    <div formGroupName="company">
+      <input id="comp-name" type="text" formControlName="name" placeholder="Company name">
+    </div>
+
+    <button type="submit" [disabled]="!editUserForm.valid">Edit</button>
+  </form>
+</div>

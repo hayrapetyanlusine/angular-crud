@@ -17,6 +17,9 @@
   }
 
   table {
+    max-width: 700px;
+    width: 100%;
+
     th {
       font-size: 18px;
       padding: 8px 10px;
@@ -29,10 +32,18 @@
 
     .del-btn {
       color: red;
+
+      &:hover {
+        color: #de0404;
+      }
     }
 
     .edit-btn {
       color: gray;
+
+      &:hover {
+        color: dimgray;
+      }
     }
   }
 

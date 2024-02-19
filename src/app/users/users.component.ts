@@ -24,35 +24,38 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.getUsers();
 
-    let formData = history.state.data;
+    const formData = history.state.data;
 
     if(formData) {
-      this.add({
-        id: Math.random(),
-        name: formData.name,
-        email: formData.email,
+      const {name, email, company} = formData;
+
+      const data = {
+        id: history.state.id ? history.state.id : Math.random(),
+        name, email,
         company: {
-          name: formData.company.name || ""
+          name: company.name || ""
         }
-      })
+      }
+
+      history.state.isEditing ? this.update(data) : this.add(data);
     }
   }
 
   getUsers(): void {
     this.userService.getUsers()
-      .subscribe(users => this.users = users);
+      .subscribe((users: User[]) => this.users = users);
   }
 
   add(user: User): void {
     this.userService
       .addUser(user)
-      .subscribe(user => this.users.push(user));
+      .subscribe((user: User) => this.users.push(user));
   }
 
   update(newUser: User): void {
     this.userService
       .updateUser(newUser)
-      .subscribe(user => {
+      .subscribe((user: User) => {
         const ind = user ? this.users.findIndex(u => u.id === user.id) : -1;
         if (ind > -1) {
           this.users[ind] = newUser;
@@ -62,6 +65,7 @@ export class UsersComponent implements OnInit {
 
   delete(user: User): void {
     this.users = this.users.filter(u => u !== user);
+
     this.userService
       .deleteUser(user.id)
       .subscribe();

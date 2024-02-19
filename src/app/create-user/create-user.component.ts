@@ -37,6 +37,7 @@ export class CreateUserComponent {
 
   onSubmit(): void {
     const formData = this.createUserForm.value;
+
     this.router.navigate([""], { state: { data: formData } });
   }
 }
