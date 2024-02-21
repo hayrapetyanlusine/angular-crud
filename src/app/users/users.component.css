@@ -7,28 +7,30 @@
   max-width: 700px;
   width: 100%;
 }
-:host table {
-  max-width: 700px;
+:host .table-wrapper {
   width: 100%;
 }
-:host table th {
+:host .table-wrapper table {
+  width: 100%;
+}
+:host .table-wrapper table th {
   font-size: 18px;
   padding: 8px 10px;
   text-align: center;
 }
-:host table td {
+:host .table-wrapper table td {
   padding: 8px 10px;
 }
-:host table .del-btn {
+:host .table-wrapper table .del-btn {
   color: red;
 }
-:host table .del-btn:hover {
+:host .table-wrapper table .del-btn:hover {
   color: #de0404;
 }
-:host table .edit-btn {
+:host .table-wrapper table .edit-btn {
   color: gray;
 }
-:host table .edit-btn:hover {
+:host .table-wrapper table .edit-btn:hover {
   color: dimgray;
 }
 :host button {

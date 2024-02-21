@@ -7,33 +7,36 @@
   max-width: 700px;
   width: 100%;
 
-  table {
-    max-width: 700px;
+  .table-wrapper {
     width: 100%;
 
-    th {
-      font-size: 18px;
-      padding: 8px 10px;
-      text-align: center;
-    }
+    table {
+      width: 100%;
 
-    td {
-      padding: 8px 10px;
-    }
-
-    .del-btn {
-      color: red;
-
-      &:hover {
-        color: #de0404;
+      th {
+        font-size: 18px;
+        padding: 8px 10px;
+        text-align: center;
       }
-    }
 
-    .edit-btn {
-      color: gray;
+      td {
+        padding: 8px 10px;
+      }
 
-      &:hover {
-        color: dimgray;
+      .del-btn {
+        color: red;
+
+        &:hover {
+          color: #de0404;
+        }
+      }
+
+      .edit-btn {
+        color: gray;
+
+        &:hover {
+          color: dimgray;
+        }
       }
     }
   }

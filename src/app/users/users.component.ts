@@ -81,7 +81,12 @@ export class UsersComponent implements OnInit {
   }
 
   delete(user: User): void {
-    this.users = this.users.filter(u => u !== user);
+    const index: number = this.users.indexOf(user);
+
+    if (index !== -1) {
+      this.users.splice(index, 1);
+      this.filteredUsers = this.filteredUsers.filter(u => u !== user);
+    }
 
     this.userService
       .deleteUser(user.id)

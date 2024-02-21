@@ -2,7 +2,7 @@
 <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
 
 <div *ngIf="isLoading"> Loading data... </div>
-<diV *ngIf="!isLoading">
+<div *ngIf="!isLoading" class="table-wrapper">
   <table>
     <thead>
     <tr>
@@ -27,7 +27,7 @@
     </tr>
     </tbody>
   </table>
-</diV>
+</div>
 
 <div class="create-wrapper">
   <button type="button" routerLink="/create" class="create-btn">Create</button>
