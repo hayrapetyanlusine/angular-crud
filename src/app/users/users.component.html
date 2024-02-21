@@ -1,9 +1,7 @@
-<div class="search">
-  <input type="text" placeholder="Search...">
-</div>
+
+<app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
 
 <div *ngIf="isLoading"> Loading data... </div>
-
 <diV *ngIf="!isLoading">
   <table>
     <thead>
@@ -17,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users; let i = index" [@flyInOut]>
+    <tr *ngFor="let user of filteredUsers; let i = index" [@flyInOut]>
       <td>{{ i + 1 }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.email }}</td>

@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "./user";
 import {UsersInfoService} from "./users-info/users-info.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {flyInOut} from "../animations";
+import {FormsModule} from "@angular/forms";
+import {SearchComponent} from "../search/search.component";
+import {User} from "./user";
 
 @Component({
   selector: 'app-users',
@@ -11,7 +13,9 @@ import {flyInOut} from "../animations";
   imports: [
     NgForOf,
     RouterLink,
-    NgIf
+    NgIf,
+    FormsModule,
+    SearchComponent,
   ],
   animations: [
     flyInOut
@@ -21,6 +25,7 @@ import {flyInOut} from "../animations";
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
+  filteredUsers: User[] = [];
   isLoading: boolean = false;
 
   constructor(
@@ -53,6 +58,7 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers()
       .subscribe((users: User[]) => {
         this.users = users;
+        this.filteredUsers = users;
         this.isLoading = false;
       });
   }
@@ -80,5 +86,13 @@ export class UsersComponent implements OnInit {
     this.userService
       .deleteUser(user.id)
       .subscribe();
+  }
+
+  onSearchTextChanged(searchText: string): void {
+    searchText = searchText.trim().toLowerCase();
+
+    this.filteredUsers = this.users.filter((user: User) =>
+      user.name.toLowerCase().includes(searchText)
+    );
   }
 }
