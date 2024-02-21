@@ -1,21 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "./user";
 import {UsersInfoService} from "./users-info/users-info.service";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {flyInOut} from "../animations";
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
     NgForOf,
-    RouterLink
+    RouterLink,
+    NgIf
+  ],
+  animations: [
+    flyInOut
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
+  isLoading: boolean = false;
 
   constructor(
     private userService: UsersInfoService
@@ -29,8 +35,8 @@ export class UsersComponent implements OnInit {
     if(formData) {
       const {name, email, company} = formData;
 
-      const data = {
-        id: history.state.id ? history.state.id : Math.random(),
+      const data: User = {
+        id: history.state.id ? history.state.id : this.users.length + 1,
         name, email,
         company: {
           name: company.name || ""
@@ -42,8 +48,13 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers(): void {
+    this.isLoading = true;
+
     this.userService.getUsers()
-      .subscribe((users: User[]) => this.users = users);
+      .subscribe((users: User[]) => {
+        this.users = users;
+        this.isLoading = false;
+      });
   }
 
   add(user: User): void {
