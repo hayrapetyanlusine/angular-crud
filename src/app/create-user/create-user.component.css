@@ -10,12 +10,6 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-
-    input {
-      width: 100%;
-      padding: 8px 10px;
-    }
 
     .btns-wrapper {
       display: flex;
@@ -27,6 +21,10 @@
         cursor: pointer;
         border-radius: 8px;
       }
+    }
+
+    .example-full-width {
+      width: 100%;
     }
   }
 }
