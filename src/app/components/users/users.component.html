@@ -1,0 +1,43 @@
+<app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
+
+@if (!isLoading) {
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+      <tr>
+        <th>№</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Company name</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+        @for (user of filteredUsers; track filteredUsers; let i = $index) {
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.company.name }}</td>
+            <td>
+              <button class="del-btn" (click)="delete(user)">Delete</button>
+            </td>
+            <td>
+              <button type="button" [routerLink]="['/edit', user.id]" class="edit-btn">Edit</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="create-wrapper">
+    <button type="button" routerLink="/create" class="create-btn">Create</button>
+  </div>
+
+} @else {
+  <div> Loading data...</div>
+}

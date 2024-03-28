@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {CreateUserComponent} from "./create-user/create-user.component";
-import {UsersComponent} from "./users/users.component";
-import {EditUserComponent} from "./edit-user/edit-user.component";
+import {PageNotFoundComponent} from "./components/page-not-found.component";
+import {CreateUserComponent} from "./components/create-user/create-user.component";
+import {UsersComponent} from "./components/users/users.component";
+import {EditUserComponent} from "./components/edit-user/edit-user.component";
 
 export const routes: Routes = [
   {path: "", component: UsersComponent},

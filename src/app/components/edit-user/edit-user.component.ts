@@ -1,21 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {UsersInfoService} from "../users/users-info/users-info.service";
-import {User} from "../users/user";
-import {NgIf} from "@angular/common";
+import {Component, inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {UsersInfoService} from "../../services/users-info.service";
+import {User} from "../../interfaces/user";
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
   imports: [
-    NgIf,
     ReactiveFormsModule
   ],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css'
 })
 export class EditUserComponent implements OnInit {
+  route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = inject(Router);
+  userService: UsersInfoService = inject(UsersInfoService);
+  formBuilder: FormBuilder = inject(FormBuilder);
+
   user!: User;
   selectedId!: number;
   isLoading: boolean = false;
@@ -28,23 +31,10 @@ export class EditUserComponent implements OnInit {
     })
   });
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private userService: UsersInfoService,
-    private formBuilder: FormBuilder
-  ) {
-  }
-
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      const idString: string | null = params.get("id");
+    const id: number = Number(this.route.snapshot.paramMap.get("id"));
 
-      if (idString !== null) {
-        this.selectedId = parseInt(idString, 10);
-        this.getUser(this.selectedId);
-      }
-    });
+    this.getUser(id);
   }
 
   getUser(id: number): void {

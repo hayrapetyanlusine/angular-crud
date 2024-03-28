@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {NgIf} from "@angular/common";
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -10,7 +9,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf,
     MatInputModule,
     MatFormFieldModule
   ],
@@ -18,12 +16,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './create-user.component.css'
 })
 export class CreateUserComponent implements OnInit {
-  createUserForm!: FormGroup;
+  formBuilder: FormBuilder = inject(FormBuilder);
+  router: Router = inject(Router);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
+  createUserForm!: FormGroup;
 
   ngOnInit(): void {
     this.createUserForm = this.formBuilder.group({

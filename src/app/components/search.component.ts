@@ -8,8 +8,20 @@ import {debounceTime, Subject} from "rxjs";
   imports: [
     ReactiveFormsModule
   ],
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  template: `
+    <input type="text" placeholder="Search..." (input)="onInputChange($event)">
+  `,
+  styles: `
+    :host {
+      max-width: 700px;
+      width: 100%;
+
+      input {
+        width: 100%;
+        padding: 8px 10px;
+      }
+    }
+  `
 })
 export class SearchComponent {
   private searchSubject: Subject<string> = new Subject<string>();

@@ -1,38 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {UsersInfoService} from "./users-info/users-info.service";
-import {NgForOf, NgIf} from "@angular/common";
+import {Component, inject, OnInit} from '@angular/core';
+import {UsersInfoService} from "../../services/users-info.service";
 import {RouterLink} from "@angular/router";
-import {flyInOut} from "../animations";
 import {FormsModule} from "@angular/forms";
-import {SearchComponent} from "../search/search.component";
-import {User} from "./user";
+import {SearchComponent} from "../search.component";
+import {User} from "../../interfaces/user";
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
-    NgForOf,
     RouterLink,
-    NgIf,
     FormsModule,
     SearchComponent,
-  ],
-  animations: [
-    flyInOut
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 export class UsersComponent implements OnInit {
+  userService: UsersInfoService = inject(UsersInfoService);
+
   users: User[] = [];
   filteredUsers: User[] = [];
   isLoading: boolean = false;
 
-  constructor(
-    private userService: UsersInfoService
-  ) {}
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
 
     const formData = history.state.data;

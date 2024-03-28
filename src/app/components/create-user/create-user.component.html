@@ -9,9 +9,9 @@
       formControlName="name"
       placeholder="Name"
     >
-    <mat-error *ngIf="createUserForm.get('name')?.invalid">
-      {{ getNameErrorMessage() }}
-    </mat-error>
+    @if (createUserForm.get('name')?.invalid) {
+      <mat-error> {{ getNameErrorMessage() }} </mat-error>
+    }
   </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill">
@@ -22,9 +22,9 @@
       formControlName="email"
       placeholder="Email"
     >
-    <mat-error *ngIf="createUserForm.get('email')?.invalid">
-      {{ getEmailErrorMessage() }}
-    </mat-error>
+    @if (createUserForm.get('email')?.invalid) {
+      <mat-error> {{ getEmailErrorMessage() }} </mat-error>
+    }
   </mat-form-field>
 
   <div formGroupName="company">

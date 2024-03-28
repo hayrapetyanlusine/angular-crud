@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
-import {User} from "../user";
+import {User} from "../interfaces/user";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,8 +16,7 @@ const httpOptions = {
 export class UsersInfoService {
   url = "https://jsonplaceholder.typicode.com/users";
 
-  constructor(private http: HttpClient) {
-  }
+  http = inject(HttpClient);
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.url);

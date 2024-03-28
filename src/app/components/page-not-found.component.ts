@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-page-not-found',
   standalone: true,
   imports: [],
-  templateUrl: './page-not-found.component.html',
-  styleUrl: './page-not-found.component.css'
+  template: `<h1>This page doesn't exist!</h1>`,
+  styles: `h1 { color: #de0404; }`
 })
 export class PageNotFoundComponent {
 
